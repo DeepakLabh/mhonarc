@@ -1,0 +1,35 @@
+<!-- Configuration for individual message pages -->
+
+<MsgPgBegin>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>$SUBJECTNA:72$</TITLE>
+<LINK REV="made" HREF="mailto:$FROMADDR$">
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+</MsgPgBegin>
+
+<FieldOrder>
+from
+to
+cc
+subject
+date
+</FieldOrder>
+
+<TopLinks>
+<HR>
+$BUTTON(PREV)$$BUTTON(NEXT)$ &nbsp; $BUTTON(TPREV)$$BUTTON(TNEXT)$ &nbsp; 
+[<A HREF="thread.html#$MSGNUM$">Thread Index</A>]
+[<A HREF="date.html#$MSGNUM$">Date Index</A>]
+[<A HREF="author.html#$MSGNUM$">Author Index</A>]
+</TopLinks>
+
+<BotLinks>
+<HR>
+$BUTTON(PREV)$$BUTTON(NEXT)$ &nbsp; $BUTTON(TPREV)$$BUTTON(TNEXT)$ &nbsp; 
+[<A HREF="thread.html#$MSGNUM$">Thread Index</A>]
+[<A HREF="date.html#$MSGNUM$">Date Index</A>]
+[<A HREF="author.html#$MSGNUM$">Author Index</A>]
+</BotLinks>

@@ -1,0 +1,58 @@
+<!-- Configuration for the thread index page -->
+
+<TIDXFNAME>
+thread.html
+</TIDXFNAME>
+
+<!-- Reverse date order, for threads, forward order within thread -->
+<TSORT>
+</TSORT>  
+<TREVERSE>
+</TREVERSE>
+
+<TIdxPgBegin>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>$LISTNAME$ $ARCHDATE$ Archive by Thread</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H1>$ARCHDATE$ Archive by Thread</H1>
+</TIdxPgBegin>
+
+<THead>
+<UL>
+<LI>Messages sorted by: [ Thread ] [ <A HREF="$IDXFNAME$">Date</A> ] [ <A HREF="author.html">Author</A> ]</LI>
+<LI><A HREF="../index.html">Other months</A></LI>
+</UL>
+
+<form method="get" action="/mailman/search">
+<p>
+Search:
+<input type="text" name="query" size="40">
+<!-- <input type="hidden" name="idxname" value="foobar"> -->
+<select name="subquery"> 
+ <option value="+uri:/^http://mail.gnome.org/archives/$LISTNAME$/$ARCHDATE$/">This time period only</option>
+ <option value="+uri:/^http://mail.gnome.org/archives/$LISTNAME$/">This mailing list only</option>
+ <option value="">All mailing lists</option>
+</select>
+<input type="hidden" name="reference" value="off">
+<input type="submit" name="submit" value="Search!">
+<a href="/mailman/search">[More...]</a>
+</p>
+</form>
+
+<p>Messages are ordered newest-to-oldest in this index.  The newest
+threads will be at the top of this page, the oldest will be at the bottom.</p>
+
+<p>Within a single thread, the first mail note is the START of the
+thread; the notes following that are in the chronological order of
+when they were received. So globally, newest messages are at the top,
+but within a thread, the oldest (the start of the thread) is at the
+top.</p>
+
+<p>If you think about it, it is confusing. Just go with the flow and everything will be all right.</p>
+
+<HR>
+<UL>
+</THead>

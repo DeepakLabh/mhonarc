@@ -1,0 +1,24 @@
+<INCLUDE>
+/var/mailman/mhonarc/public-rc/date.rc
+/var/mailman/mhonarc/public-rc/thread.rc
+/var/mailman/mhonarc/public-rc/message.rc
+</INCLUDE>
+
+<!-- This tells Mhonarc to create the separate author index  -->
+<!-- unfortunately, it's not directly accessible by next and -->
+<!-- prev buttons :(                                         -->
+<OTHERINDEXES>
+/var/mailman/mhonarc/public-rc/author.rc
+</OTHERINDEXES>
+
+<SPAMMODE>
+</SPAMMODE>
+
+<!-- Put up a little barrier against automatically harvesting           -->
+<!-- addresses, but keep things reasonably easy for a human to decipher -->
+<ADDRESSMODIFYCODE>
+s/\./ /g; s/@/ /g;
+</ADDRESSMODIFYCODE>
+
+<NOMAILTO>
+</NOMAILTO>

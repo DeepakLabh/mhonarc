@@ -1,0 +1,54 @@
+<!-- Configuration for the date index page -->
+
+<IDXFNAME>
+date.html
+</IDXFNAME>
+
+<IdxPgBegin>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>$LISTNAME$ $ARCHDATE$ Archive by Date</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H1>$ARCHDATE$ Archive by Date</H1>
+</IdxPgBegin>
+
+<ListBegin>
+<UL>
+<LI>Messages sorted by: [ <A HREF="$TIDXFNAME$">Thread</A> ] [ Date ] [ <A HREF="author.html">Author</A> ]</LI>
+<LI><A HREF="../index.html">Other months</A></LI>
+
+</UL>
+<form method="get" action="/mailman/private/$LISTNAME$/search">
+<p>
+Search:
+<input type="text" name="query" size="40">
+<!-- <input type="hidden" name="idxname" value="foobar"> -->
+<select name="subquery"> 
+ <option value="+uri:/^http://mail.gnome.org/mailman/private/$LISTNAME$/$ARCHDATE$/">This time period only</option>
+ <option value="">All time periods</option>
+</select>
+<input type="hidden" name="reference" value="off">
+<input type="submit" name="submit" value="Search!">
+<a href="/mailman/private/$LISTNAME$/search">[More...]</a>
+</p>
+</form>
+<HR>
+</ListBegin>
+
+<DayBegin>
+<p><strong>$MSGGMTDATE(CUR;%d %B %Y)$</strong></LI>
+<ul>      
+</DayBegin>  
+
+<LITemplate>
+<li>$SUBJECT$&nbsp;&nbsp;$FROMNAME$</li>
+</LITemplate>                                                                  
+
+<DayEnd>
+</ul>
+</DayEnd>            
+
+<ListEnd>
+</ListEnd>

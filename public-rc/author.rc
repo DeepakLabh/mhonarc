@@ -1,0 +1,62 @@
+<!-- Owen Taylor <otaylor@redhat.com -->
+
+<AUTHSORT>
+</AUTHSORT>
+
+<NOTHREAD
+</NOTHREAD>
+
+<!-- Filename of main index, sorted by author -->
+<IDXFNAME>
+author.html
+</IDXFNAME>
+
+<IdxPgBegin>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
+<HTML>
+<HEAD>
+<TITLE>$LISTNAME$ $ARCHDATE$ Archive by Author</TITLE>
+</HEAD>
+<BODY BGCOLOR="#FFFFFF">
+<H1>$ARCHDATE$ Archive by Author</H1>
+</IdxPgBegin>
+
+<ListBegin>
+<UL>
+<LI>Messages sorted by: [ <A HREF="thread.html">Thread</A> ] [ <A HREF="date.html">Date</A> ] [ Author ]</LI>
+<LI><A HREF="../index.html">Other months</A></LI>
+</UL>
+</UL>
+<form method="get" action="/mailman/search">
+<p>
+Search:
+<input type="text" name="query" size="40">
+<!-- <input type="hidden" name="idxname" value="foobar"> -->
+<select name="subquery"> 
+ <option value="+uri:/^http://mail.gnome.org/archives/$LISTNAME$/$ARCHDATE$/">This time period only</option>
+ <option value="+uri:/^http://mail.gnome.org/archives/$LISTNAME$/">This mailing list only</option>
+ <option value="">All mailing lists</option>
+</select>
+<input type="hidden" name="reference" value="off">
+<input type="submit" name="submit" value="Search!">
+<a href="/mailman/search">[More...]</a>
+</p>
+</form>
+<HR>
+</ListBegin>
+
+<AuthorBegin>
+<p><strong>$FROMNAME$</strong>
+<ul>      
+</AuthorBegin>  
+
+<LITemplate>
+<li>$SUBJECT$  $MSGGMTDATE$</li>
+</LITemplate>                                                                  
+
+<AuthorEnd>
+</ul>
+</AuthorEnd>            
+
+<ListEnd>
+</ListEnd>
