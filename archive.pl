@@ -23,6 +23,8 @@ sub new {
 
   $self->{private} = exists $options{private} ? $options{private} : 0;
 
+  $self->{debug} = exists $options{debug} ? $options{debug} : 0;
+
   $self->{olddir} = undef;
   my $tmpname = $self->{tmpname} = tmpnam();
 
@@ -87,33 +89,85 @@ EOT
 }
 
 sub handle_msg {
-  my ($self, $msg_lines, $msg_text, $start_time, $end_time) = @_;
+  my ($self, $msg_lines, $msg_text) = @_;
 
   my $msg = new Mail::Internet ( $msg_lines );
 
-  $field_text = $msg->head()->get ("Received", 0);
+  $received_text1 = $msg->head()->get ("Received", 0);
+  $received_text2 = $msg->head()->get ("Received", 1);
+  $received_text3 = $msg->head()->get ("Received", 2);
 
   my $time;
 
-  if (defined $field_text) {
-    $received = new Mail::Field ('received', $field_text);
+  if (defined $received_text1) {
+    $received = new Mail::Field ('received', $received_text1);
     if ($received->parsed_ok ()) {
       my $parse_tree = $received->parse_tree();
       $time = str2time ($parse_tree->{date_time}->{whole});
+      if(defined($time)) {
+        $self->{last_time} = $time;
+        $self->{last_parsable_time} = $received1_text;
+      }
+    }
+    elsif (defined($received_text2)) {
+      $received = new Mail::Field ('received', $received_text2);
+      if ($received->parsed_ok ()) {
+        my $parse_tree = $received->parse_tree();
+        $time = str2time ($parse_tree->{date_time}->{whole});
+        if(defined($time)) {
+          $self->{last_time} = $time;
+          $self->{last_parsable_time} = $received1_text;
+        }
+      }
+      elsif (defined($received_text3)) {
+        $received = new Mail::Field ('received', $received_text3);
+        if ($received->parsed_ok ()) {
+          my $parse_tree = $received->parse_tree();
+          $time = str2time ($parse_tree->{date_time}->{whole});
+          if(defined($time)) {
+            $self->{last_time} = $time;
+            $self->{last_parsable_time} = $received1_text;
+          }
+        }
+      }
+    }
+    else {
+      if($self->{debug}) {
+        print STDERR "Failed parsing first three Received headers.\n";
+      }
     }
   }
 
-  return if ($start_time > 0 && $time < $start_time);
-  return if ($end_time > 0 && $time > $end_time);
-
-  if (defined ($time)) {
-    $dir =  strftime ("%Y-%B", gmtime ($time));
+  if(defined($time)) {
+    if(defined($self->{start_time})) {
+      return if($self->{start_time} > 0 && $time < $self->{start_time});
+    }
+    if(defined($self->{end_time})) {
+      return if($self->{end_time} > 0 && $time > $self->{end_time});
+    }
+    
+    $dir = strftime ("%Y-%B", gmtime ($time));
     if (defined $self->{olddir} && $self->{olddir} ne $dir)
-      {
-	$self->output (0);
-      }
+    {
+	  $self->output (0);
+    }
     
     $self->{olddir} = $dir;
+    $self->{last_time} = $time;
+    $self->{last_parsable_time} = $received1_text;
+  }
+  else {
+    if($self->{debug}) {
+      if(defined($received1_text)) {
+        print "Couldn't parse 'Received: ".$received1_text."'\n";
+      }
+      else {
+        print "No 'Received' header found.\n";
+      }
+      if(defined($self->{last_time})) {
+        print "Last parsable time was ".strftime("%Y-%B-%m", gmtime($self->{last_time}))."\n";
+      }
+    }
   }
   
   $self->{tmpfile}->print($msg_text);
@@ -259,6 +313,7 @@ my $private = 0;
 my $makeindex = 0;
 my $start_time = 0;
 my $end_time = 0;
+my $debug = 0;
 
 $ENV{PATH} = "$ENV{PATH}:/usr/local/bin";
 
@@ -266,10 +321,11 @@ GetOptions ("listname=s" => \$listname,
 	    "makeindex" => \$makeindex,
 	    "private" => \$private,
 	    "start-time=s" => \$start_time,
-	    "end-time=s" => \$end_time);
+	    "end-time=s" => \$end_time,
+	    "debug" => \$debug);
 
 if (@ARGV > 1 || !defined $listname) {
-  print STDERR "Usage archive.pl [ --private ] [--start-time DATE] [--end-time DATE] --listname NAME (--makeindex | [ FILE ])\n";
+  print "Usage archive.pl [--debug] [ --private ] [--start-time DATE] [--end-time DATE] --listname NAME (--makeindex | [ FILE ])\n";
   exit (1);
 }
 
@@ -278,20 +334,20 @@ if ($makeindex) {
   exit (0);
 }
 
-if ($start_time) {
-  $start_time = str2time($start_time);
-}
-if ($end_time) {
-  $end_time = str2time($end_time);
-}
-
 my $file = $ARGV[0];
 my $msg_text = "";
 my @mail  = ();
 my $blank = 1;
 
 my $archiver = new Archiver (listname => $listname,
-			     private => $private);
+			     private => $private, debug => $debug);
+
+if ($start_time) {
+  $archiver->{start_time} = str2time($start_time);
+}
+if ($end_time) {
+  $archiver->{end_time} = str2time($end_time);
+}
 
 if (defined $file) {
   open(FH,"< $file") or die ("cannot open '$file': $!\n");
@@ -299,13 +355,13 @@ if (defined $file) {
 } else {
   $fh = \*STDIN;
 }
-  
+
 my $line;
 while (defined ($line = <$fh>)) {
   if ($blank && $line =~ /\AFrom .*\d{4}/) {
     # Matched beginning of a new message
 
-    $archiver->handle_msg (\@mail, $msg_text, $start_time, $end_time) if scalar(@mail);
+    $archiver->handle_msg (\@mail, $msg_text) if scalar(@mail);
     @mail = ( $line );
     $msg_text = $line;
     $blank = 0;
@@ -317,7 +373,7 @@ while (defined ($line = <$fh>)) {
   }
 }
 
-$archiver->handle_msg (\@mail, $msg_text, $start_time, $end_time) if scalar(@mail);
+$archiver->handle_msg (\@mail, $msg_text) if scalar(@mail);
 
 close($fh);
 
