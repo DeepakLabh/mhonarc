@@ -1,4 +1,5 @@
 2005-02-06  Ross Golder  <ross@golder.org>
 
+	* archive.pl: Fixed bugs in 'start-time' and 'end-time' options.
 	* archive.pl: Added 'start-time' and 'end-time' options.
 

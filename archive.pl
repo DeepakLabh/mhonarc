@@ -265,8 +265,8 @@ $ENV{PATH} = "$ENV{PATH}:/usr/local/bin";
 GetOptions ("listname=s" => \$listname,
 	    "makeindex" => \$makeindex,
 	    "private" => \$private,
-	    "start-time" => \$start_time,
-	    "end-time" => \$end_time);
+	    "start-time=s" => \$start_time,
+	    "end-time=s" => \$end_time);
 
 if (@ARGV > 1 || !defined $listname) {
   print STDERR "Usage archive.pl [ --private ] [--start-time DATE] [--end-time DATE] --listname NAME (--makeindex | [ FILE ])\n";
@@ -281,7 +281,6 @@ if ($makeindex) {
 if ($start_time) {
   $start_time = str2time($start_time);
 }
-
 if ($end_time) {
   $end_time = str2time($end_time);
 }
