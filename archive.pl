@@ -103,6 +103,9 @@ sub handle_msg {
     }
   }
 
+  return if ($start_time > 0 && $time < $start_time);
+  return if ($end_time > 0 && $time > $end_time);
+
   if (defined ($time)) {
     $dir =  strftime ("%Y-%B", gmtime ($time));
 
@@ -254,21 +257,33 @@ use Getopt::Long;
 my $listname;
 my $private = 0;
 my $makeindex = 0;
+my $start_time = 0;
+my $end_time = 0;
 
 $ENV{PATH} = "$ENV{PATH}:/usr/local/bin";
 
 GetOptions ("listname=s" => \$listname,
 	    "makeindex" => \$makeindex,
-	    "private" => \$private);
+	    "private" => \$private,
+	    "start-time" => \$start_time,
+	    "end-time" => \$end_time);
 
 if (@ARGV > 1 || !defined $listname) {
-  print STDERR "Usage archive.pl [ --private ] --listname NAME (--makeindex | [ FILE ])\n";
+  print STDERR "Usage archive.pl [ --private ] [--start-time DATE] [--end-time DATE] --listname NAME (--makeindex | [ FILE ])\n";
   exit (1);
 }
 
 if ($makeindex) {
   Archiver::make_index ($listname, $private);
   exit (0);
+}
+
+if ($start_time) {
+  $start_time = str2time($start_time);
+}
+
+if ($end_time) {
+  $end_time = str2time($end_time);
 }
 
 my $file = $ARGV[0];
