@@ -87,7 +87,7 @@ EOT
 }
 
 sub handle_msg {
-  my ($self, $msg_lines, $msg_text) = @_;
+  my ($self, $msg_lines, $msg_text, $start_time, $end_time) = @_;
 
   my $msg = new Mail::Internet ( $msg_lines );
 
@@ -108,7 +108,6 @@ sub handle_msg {
 
   if (defined ($time)) {
     $dir =  strftime ("%Y-%B", gmtime ($time));
-
     if (defined $self->{olddir} && $self->{olddir} ne $dir)
       {
 	$self->output (0);
@@ -253,6 +252,7 @@ EOT
 package Main;
 
 use Getopt::Long;
+use Date::Parse qw(str2time);
 
 my $listname;
 my $private = 0;
@@ -305,7 +305,7 @@ while (defined ($line = <$fh>)) {
   if ($blank && $line =~ /\AFrom .*\d{4}/) {
     # Matched beginning of a new message
 
-    $archiver->handle_msg (\@mail, $msg_text) if scalar(@mail);
+    $archiver->handle_msg (\@mail, $msg_text, $start_time, $end_time) if scalar(@mail);
     @mail = ( $line );
     $msg_text = $line;
     $blank = 0;
@@ -317,7 +317,7 @@ while (defined ($line = <$fh>)) {
   }
 }
 
-$archiver->handle_msg (\@mail, $msg_text) if scalar(@mail);
+$archiver->handle_msg (\@mail, $msg_text, $start_time, $end_time) if scalar(@mail);
 
 close($fh);
 
