@@ -1,3 +1,3 @@
-MAILMAN_HOME=/var/mailman
-OLD_ARCHIVE_DIR=${MAILMAN_HOME}/archives/private
-ARCHIVE_DIR=${MAILMAN_HOME}/web-archives/private
+MAILMAN_HOME=/usr/lib/mailman
+OLD_ARCHIVE_DIR=/var/lib/mailman/archives/private
+ARCHIVE_DIR=/mail/list-archives/private

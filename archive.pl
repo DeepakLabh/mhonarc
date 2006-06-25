@@ -2,10 +2,10 @@
 
 package Archiver;
 
-$ARCHIVE_DIR = "/var/mailman/web-archives/private";
-$PUBLIC_ARCHIVE_DIR = "/var/mailman/web-archives/public";
-$PUBLIC_RCFILE = "/var/mailman/mhonarc/public-rc/base.rc";
-$PRIVATE_RCFILE = "/var/mailman/mhonarc/private-rc/base.rc";
+$PUBLIC_ARCHIVE_DIR = "/mail/list-archives/public";
+$PUBLIC_RCFILE = "/home/admin/mhonarc/public-rc/base.rc";
+$PRIVATE_ARCHIVE_DIR = "/mail/list-archives/private";
+$PRIVATE_RCFILE = "/home/admin/mhonarc/private-rc/base.rc";
 
 use Date::Parse qw(str2time);
 use Mail::Field;
@@ -42,7 +42,7 @@ sub output {
   
   my $tmpname = $self->{tmpname};
 
-  my $dir = $ARCHIVE_DIR;
+  my $dir = $PRIVATE_ARCHIVE_DIR;
   $dir .= "/$self->{listname}/$self->{olddir}";
 
   $self->{tmpfile}->close;
@@ -76,7 +76,7 @@ EOT
 	    mkpath $PUBLIC_ARCHIVE_DIR, 0, 0755;
 	}
 
-	symlink "$ARCHIVE_DIR/$self->{listname}", "$PUBLIC_ARCHIVE_DIR/$self->{listname}" 
+	symlink "$PRIVATE_ARCHIVE_DIR/$self->{listname}", "$PUBLIC_ARCHIVE_DIR/$self->{listname}" 
     }
 	
     
@@ -192,7 +192,7 @@ my %months =
 sub make_index {
   my ($listname, $private) = @_;
   
-  my $dirname = $ARCHIVE_DIR . "/$listname";
+  my $dirname = $PRIVATE_ARCHIVE_DIR . "/$listname";
   
   opendir DH, "$dirname" || die "Cannot open $dirname for indexing: $!\n";
 

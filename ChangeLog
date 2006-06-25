@@ -1,3 +1,13 @@
+2006-06-21  Ross Golder  <ross@golder.org>
+
+	* Moved lists from '/var/mailman/web-archives' to
+	'/mail/list-archives'.
+	* Moved script base from '/var/mailman/mhonarc' to
+	'/home/admin/mhonarc'.
+	* update.pl: Changed 'ARCHIVE_DIR' to 'PRIVATE_ARCHIVE_DIR'.
+	* update.pl: Uses mailman's 'list_lists' instead of relying
+	on symlinks.
+
 2005-02-06  Ross Golder  <ross@golder.org>
 
 	* archive.pl: Now checks second and third Received header if it

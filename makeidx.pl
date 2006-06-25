@@ -1,9 +1,9 @@
 #!/usr/bin/perl -w
 
-$ARCHIVE_DIR = "/var/mailman/web-archives/private";
-$PUBLIC_ARCHIVE_DIR = "/var/mailman/web-archives/public";
-#$PUBLIC_RCFILE = "/var/mailman/mhonarc/public-rc/base.rc";
-#$PRIVATE_RCFILE = "/var/mailman/mhonarc/private-rc/base.rc";
+$ARCHIVE_DIR = "/mail/list-archives/private";
+$PUBLIC_ARCHIVE_DIR = "/mail/list-archives/public";
+#$PUBLIC_RCFILE = "/home/admin/mhonarc/public-rc/base.rc";
+#$PRIVATE_RCFILE = "/home/admin/mhonarc/private-rc/base.rc";
 
 my @lists;
 
@@ -40,7 +40,7 @@ for $list (@lists) {
 
     $privateopt = $private ? "--private" : "";
 
-    system ("/var/mailman/mhonarc/archive.pl --listname $list --makeindex $privateopt");
+    system ("/home/admin/mhonarc/archive.pl --listname $list --makeindex $privateopt");
 } 
 
 

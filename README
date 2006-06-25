@@ -2,8 +2,8 @@ This directory contains scripts that implement hooking mhonarc onto
 mailman as an external archiver. The appropriate Mailman config
 options are:
 
-PUBLIC_EXTERNAL_ARCHIVER = '/var/mailman/mhonarc/archive.pl --listname %(listname)s'
-PRIVATE_EXTERNAL_ARCHIVER = '/var/mailman/mhonarc/archive.pl --private --listname %(listname)s'
+PUBLIC_EXTERNAL_ARCHIVER = '/home/admin/mhonarc/archive.pl --listname %(listname)s'
+PRIVATE_EXTERNAL_ARCHIVER = '/home/admin/mhonarc/archive.pl --private --listname %(listname)s'
 
 The html output can basically be divided into 4 levels
  
@@ -40,8 +40,8 @@ archive.pl - The main archiver; takes three options
 
  The variables at top:
 
-  $ARCHIVE_DIR = "/var/mailman/web-archives/private";
-  $PUBLIC_ARCHIVE_DIR = "/var/mailman/web-archives/public";
+  $ARCHIVE_DIR = "/mail/list-archives/private";
+  $PUBLIC_ARCHIVE_DIR = "/mail/list-archives/public";
   $PUBLIC_RCFILE = "/home/mailman/mhonarc/public-rc/base.rc";
   $PRIVATE_RCFILE = "/home/mailman/mhonarc/private-rc/base.rc";
 
