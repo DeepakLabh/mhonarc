@@ -3,9 +3,11 @@
 #
 # Writes the list archive search page (http://mail.gnome.org/archives/)
 #
+# Man, this'd be better off as a python script
+#
 
 $dirname = "/mail/list-archives/public";
-$NAMAZU_HEAD = "/home/admin/namazu/templates/NMZ.head"; 
+$NAMAZU_HEAD = "/home/admin/namazu/public-templates/NMZ.head"; 
 
 sub write_form {
     my ($dirs) = shift;
@@ -91,7 +93,9 @@ close PUBLIC_LISTS;
   </head>
   <body>
      <h1>The mail.gnome.org Archives</h1>
-<p><b>NOTICE (2006-06-21):</b> Due to some problems in the recent mailman upgrade, the June 2006 archives are being fixed and the search indexes are being rebuilt. Please bear with us. -- GNOME sysadmin team</p>
+
+<p><b>NOTICE (2006-07-08):</b> We're re-building the archive search indexes (again). It bombed out silently last time leaving lockfiles in place (and archives unsearchable). Please bear with us while we try to get it sorted out. -- GNOME sysadmin team.</p>
+
 EOT
     write_form (\@dirs);
 
@@ -148,13 +152,15 @@ print INDEX <<EOT;
 </head>
 <body>
 <h1>Search mail.gnome.org</h1>
-<p><b>NOTICE (2006-06-21):</b> Due to some problems in the recent mailman upgrade, the June 2006 archives are being fixed and the search indexes are being rebuilt. Please bear with us. -- GNOME sysadmin team</p>
+
+<p><b>NOTICE (2006-07-08):</b> We're re-building the archive search indexes (again). It bombed out silently last time leaving lockfiles in place (and archives unsearchable). Please bear with us while we try to get it sorted out. -- GNOME sysadmin team.</p>
+
 <p>
-This index contains <!-- FILE --> 4,826 <!-- FILE --> documents and
-<!-- KEY --> 134,294 <!-- KEY --> keywords. 
+This index contains <!-- FILE --> lots of <!-- FILE --> documents and
+<!-- KEY --> lots of <!-- KEY --> keywords. 
 </p>
 <p>
-<strong>Last modified: <!-- DATE --> 2000-08-06 <!-- DATE --></strong>
+<strong>Last modified: <!-- DATE --> 2006-07-08 <!-- DATE --></strong>
 </p>
 <hr/>
 EOT
