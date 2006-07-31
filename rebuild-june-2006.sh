@@ -28,8 +28,11 @@ for list in $lists ; do
     rm -f $ARCHIVE_DIR/$list/$monthlyname.txt.gz
   fi
   if [ -f $mbox ] ; then
+    echo "Sanitizing mbox (stripping malformed UTF-8)..."
+    iconv -f ISO-8859-1 -t UTF-8 $mbox >/tmp/mbox
+
     echo "Processing mbox file..."
-    if ! /home/admin/mhonarc/archive.pl $daterange $private --listname $list $mbox ; then
+    if ! /home/admin/mhonarc/archive.pl $daterange $private --listname $list /tmp/mbox ; then
       echo FAILED!
     fi
     echo
