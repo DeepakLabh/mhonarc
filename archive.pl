@@ -55,7 +55,7 @@ sub output {
   $rcfile = $self->{private} ? $PRIVATE_RCFILE : $PUBLIC_RCFILE;
 
   system (<<EOT);
-mhonarc -rcfile $rcfile -add -outdir $dir $tmpname -definevar "ARCHDATE=$self->{olddir} LISTNAME=$self->{listname}" >> /var/log/mailman/archive 2>&1 
+mhonarc -umask 022 -rcfile $rcfile -add -outdir $dir $tmpname -definevar "ARCHDATE=$self->{olddir} LISTNAME=$self->{listname}" >> /var/log/mailman/archive 2>&1 
 EOT
 
   if (-f "$dir.txt") {
