@@ -1,5 +1,11 @@
 2006-08-02  Olav Vitters  <olav@bkor.dhs.org>
 
+	* archive.pl: Force different different umask from within archive.pl
+	to ensure created directories (by archive.pl) are readable by
+	everyone.
+
+2006-08-02  Olav Vitters  <olav@bkor.dhs.org>
+
 	* archive.pl: Add -umask 022 option to mhonarc to ensure archives can
 	be read.
 

@@ -329,6 +329,8 @@ if (@ARGV > 1 || !defined $listname) {
   exit (1);
 }
 
+umask 0022;
+
 if ($makeindex) {
   Archiver::make_index ($listname, $private);
   exit (0);
