@@ -6,7 +6,7 @@
 # Man, this'd be better off as a python script
 #
 
-$dirname = "/mail/list-archives/public";
+$dirname = "/var/lib/mailman/archives/public";
 $NAMAZU_HEAD = "/home/admin/namazu/public-templates/NMZ.head"; 
 
 sub write_form {

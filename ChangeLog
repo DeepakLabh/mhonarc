@@ -1,3 +1,8 @@
+2006-09-30  Olav Vitters  <olav@bkor.dhs.org>
+
+	* update-master.pl: Correct the directory to be
+	/var/lib/mailman/archives/public.
+
 2006-08-02  Olav Vitters  <olav@bkor.dhs.org>
 
 	* archive.pl: Force different different umask from within archive.pl
