@@ -1,3 +1,10 @@
+2007-06-24  Jeff Waugh  <jdub@perkypants.org>
+
+	* Pretty much everything: Revert this insanity with archive storage
+	  directories in non-standard places.
+	* upgrade/rebuild scripts: Deleted these, but they're in the history
+	  if they are needed in the future.
+
 2006-09-30  Olav Vitters  <olav@bkor.dhs.org>
 
 	* update-master.pl: Correct the directory to be

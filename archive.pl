@@ -2,9 +2,9 @@
 
 package Archiver;
 
-$PUBLIC_ARCHIVE_DIR = "/mail/list-archives/public";
+$PUBLIC_ARCHIVE_DIR = "/var/lib/mailman/archives/public";
 $PUBLIC_RCFILE = "/home/admin/mhonarc/public-rc/base.rc";
-$PRIVATE_ARCHIVE_DIR = "/mail/list-archives/private";
+$PRIVATE_ARCHIVE_DIR = "/var/lib/mailman/archives/private";
 $PRIVATE_RCFILE = "/home/admin/mhonarc/private-rc/base.rc";
 
 use Date::Parse qw(str2time);
