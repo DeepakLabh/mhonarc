@@ -45,9 +45,7 @@ for n in names:
         continue
     mlists.append(mlist)
 
-dirs = [mlist.real_name for mlist in mlists]
-
-def write_form(INDEX, dirs):
+def write_form(INDEX, lists):
 
     print >>INDEX, """
 <form method="get" action="/mailman/search">
@@ -63,8 +61,8 @@ def write_form(INDEX, dirs):
 <select name="subquery"> 
  <option value="">All mailing lists</option>"""
 
-    for dir in dirs:
-	print >>INDEX, '<option value="+uri:/^http://mail.gnome.org/archives/%s/">%s</option>' % (dir, dir)
+    for list in lists:
+	print >>INDEX, '<option value="+uri:/^http://mail.gnome.org/archives/%s/">%s</option>' % (list.internal_name(), list.real_name)
 
 
     print >>INDEX, """
@@ -124,15 +122,15 @@ print >>INDEX, """
 
 <p><b>NOTICE (2006-07-08):</b> We're re-building the archive search indexes (again). It bombed out silently last time leaving lockfiles in place (and archives unsearchable). Please bear with us while we try to get it sorted out. -- GNOME sysadmin team.</p>"""
 
-write_form(INDEX, dirs)
+write_form(INDEX, mlists)
 
 print >>INDEX, """  
     <hr/>
     <ul>
 """
 
-for dir in dirs:
-    print >>INDEX, '<li><a href="%s/">%s</a></li>' % (dir, dir)
+for list in mlists:
+    print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list.internal_name(), list.real_name)
 
 
 print >>INDEX, """
@@ -189,7 +187,7 @@ This index contains <!-- FILE --> lots of <!-- FILE --> documents and
 </p>
 <hr/>"""
 
-write_form(INDEX, dirs)
+write_form(INDEX, mlists)
 INDEX.close()
 
 
