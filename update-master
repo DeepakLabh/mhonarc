@@ -48,7 +48,7 @@ dirs = [mlist.real_name for mlist in mlists]
 
 def write_form(INDEX, dirs):
 
-    print >>>INDEX, """
+    print >>INDEX, """
 <form method="get" action="/mailman/search">
 <p>
 <strong>Search String:</strong> 
