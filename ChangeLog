@@ -1,3 +1,9 @@
+2007-08-06  Olav Vitters  <olav@bkor.dhs.org>
+
+	* update-master: Convert to python. Only show publicly archived
+	mailing lists.
+	* update-master.pl: Rename to update-master.
+
 2007-06-24  Jeff Waugh  <jdub@perkypants.org>
 
 	* Pretty much everything: Revert this insanity with archive storage
