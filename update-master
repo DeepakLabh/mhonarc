@@ -13,6 +13,7 @@ from types import TupleType
 
 sys.path.append('/usr/lib/mailman/bin')
 
+import paths
 from Mailman import mm_cfg
 from Mailman import MailList
 from Mailman import Utils
