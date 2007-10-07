@@ -112,7 +112,6 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
   <link rel="icon" type="image/png" href="http://www.gnome.org/img/logo/foot-16.png">
   <link rel="SHORTCUT ICON" type="image/png" href="http://www.gnome.org/img/logo/foot-16.png">
   <title>GNOME Mail Services</title>
-  <base href="http://mail.gnome.org/" />
 </head>
 
 <body>
