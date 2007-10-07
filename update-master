@@ -147,7 +147,7 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
       </h1>
       <div id="tabs">
         <ul id="portal-globalnav">
-          <li id="portaltab-root" class="selected">
+          <li id="portaltab-root">
             <a href="/"><span>Home</span></a>
           </li>
           <li><a href="/mailman/listinfo"><span>Mailing lists</span></a></li>
@@ -159,7 +159,6 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
 <!-- end site header -->
 
   <div class="body">
-    <div id="content">
 
 <p><b>NOTICE (2006-07-08):</b> We're re-building the archive search indexes (again). It bombed out silently last time leaving lockfiles in place (and archives unsearchable). Please bear with us while we try to get it sorted out. -- GNOME sysadmin team.</p>"""
 
@@ -174,7 +173,7 @@ for list in mlists:
     print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list.internal_name(), list.real_name)
 
 
-print >>INDEX, """  </div> <!-- end of content -->
+print >>INDEX, """
 
   <div id="footer">
     Copyright &copy; 2005, 2006, 2007 <a href="http://www.gnome.org/">The GNOME Project</a>.<br />
