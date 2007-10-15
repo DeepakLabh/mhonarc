@@ -95,10 +95,10 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
           <input type="text" name="q" maxlength="255" size="15" class="searchTerms">
           <input type="hidden" name="domains" value="mail.gnome.org">
           <select name="hq">
-            <option value="/archives/">All mailing lists</option>"""
+            <option value="inurl:/archives/">All mailing lists</option>"""
 
 for list in mlists:
-    print >>INDEX, '<option value="/archives/%s/">%s</option>' % (list.internal_name(), list.real_name)
+    print >>INDEX, '<option value="inurl:/archives/%s/">%s</option>' % (list.internal_name(), list.real_name)
 
 
 print >>INDEX, """
