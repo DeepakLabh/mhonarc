@@ -97,7 +97,7 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
           <select name="hq">
             <option value="/archives/">All mailing lists</option>"""
 
-for list in lists:
+for list in mlists:
     print >>INDEX, '<option value="/archives/%s/">%s</option>' % (list.internal_name(), list.real_name)
 
 
@@ -124,11 +124,6 @@ print >>INDEX, """
 
   <div class="body">
 
-"""
-
-write_form(INDEX, mlists)
-
-print >>INDEX, """  
     <ul style="-moz-column-width: 45ex; -webkit-column-width: 45ex; column-width: 45ex">
 """
 
