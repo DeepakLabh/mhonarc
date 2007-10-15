@@ -103,7 +103,6 @@ for list in mlists:
 
 print >>INDEX, """
             </select>
-            <input type="hidden" name="hq" id="hq" value="inurl:/archives/">
             <input type="hidden" name="sitesearch" value="mail.gnome.org">
             <input type="submit" class="searchButton" value="Search">
           </form>
