@@ -336,6 +336,7 @@ EOT
   }
 
   print INDEX <<EOT;
+  </table>
   <div id="footer">
     Copyright &copy; 2005, 2006, 2007 <a href="http://www.gnome.org/">The GNOME Project</a>.<br />
     <a href="http://validator.w3.org/check/referer">Optimised</a> for <a href="http://www.w3.org/">standards</a>. Hosted by <a href="http://www.redhat.com/">Red Hat</a>.
