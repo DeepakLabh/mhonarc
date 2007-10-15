@@ -5,13 +5,73 @@ date.html
 </IDXFNAME>
 
 <IdxPgBegin>
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML//EN">
-<HTML>
-<HEAD>
-<TITLE>$LISTNAME$ $ARCHDATE$ Archive by Date</TITLE>
-</HEAD>
-<BODY BGCOLOR="#FFFFFF">
-<H1>$ARCHDATE$ Archive by Date</H1>
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.w3.org/TR/html4/strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <link href="/css/layout.css" rel="stylesheet" type="text/css" media="screen">
+  <link href="/css/style.css" rel="stylesheet" type="text/css" media="all">
+  <link rel="icon" type="image/png" href="http://www.gnome.org/img/logo/foot-16.png">
+  <link rel="SHORTCUT ICON" type="image/png" href="http://www.gnome.org/img/logo/foot-16.png">
+  <title>$LISTNAME$ $ARCHDATE$ Archive by Date</title>
+</head>
+
+<body>
+  <!-- site header -->
+  <div id="page">
+    <ul id="general">
+      <li id="siteaction-gnome_home" class="home">
+        <a href="http://www.gnome.org/" title="Home">Home</a>
+      </li>
+      <li id="siteaction-gnome_news">
+        <a href="http://news.gnome.org" title="News">News</a>
+      </li>
+      <li id="siteaction-gnome_projects">
+        <a href="http://www.gnome.org/projects/" title="Projects">Projects</a>
+      </li>
+      <li id="siteaction-gnome_art">
+        <a href="http://art.gnome.org" title="Art">Art</a>
+      </li>
+      <li id="siteaction-gnome_support">
+        <a href="http://www.gnome.org/support/" title="Support">Support</a>
+      </li>
+      <li id="siteaction-gnome_development">
+        <a href="http://developer.gnome.org" title="Development">Development</a>
+      </li>
+      <li id="siteaction-gnome_community">
+        <a href="http://www.gnome.org/community/" title="Community">Community</a>
+      </li>
+    </ul>
+    <div id="header">
+      <h1>$ARCHDATE$ Archive by Date</h1>
+      <div id="control">
+      <div id="search">
+        <form method="get" action="http://www.google.com/custom">
+          <input type="text" name="q" maxlength="255" size="15" class="searchTerms">
+          <input type="hidden" name="domains" value="mail.gnome.org">
+          <select name="hq">
+            <option value="inurl:/archives/$LISTNAME$/$ARCHDATE$/">This time period only</option>
+            <option value="inurl:/archives/$LISTNAME$/">This mailing list</option>
+            <option value="inurl:/archives/">All mailing lists</option>
+          </select>
+          <input type="hidden" name="sitesearch" value="mail.gnome.org">
+          <input type="submit" class="searchButton" value="Search">
+        </form>
+      </div>
+      </div>
+      <div id="tabs">
+        <ul id="portal-globalnav">
+          <li id="portaltab-root">
+            <a href="/"><span>Home</span></a>
+          </li>
+          <li><a href="/mailman/listinfo"><span>Mailing lists</span></a></li>
+          <li class="selected"><a href="/archives"><span>List archives</span></a></li>
+        </ul>
+      </div> <!-- end of #tabs -->
+    </div> <!-- end of #header -->
+  </div>
+<!-- end site header -->
+
+  <div class="body">
 </IdxPgBegin>
 
 <ListBegin>
@@ -53,3 +113,14 @@ Search:
 
 <ListEnd>
 </ListEnd>
+
+<IdxPgEnd>
+  <div id="footer">
+    Copyright &copy; 2005, 2006, 2007 <a href="http://www.gnome.org/">The GNOME Project</a>.<br />
+    <a href="http://validator.w3.org/check/referer">Optimised</a> for <a href="http://www.w3.org/">standards</a>. Hosted by <a href="http://www.redhat.com/">Red Hat</a>.
+  </div>
+
+  </div> <!-- end of div.body -->
+</body>
+</html>
+</IdxPgEnd>

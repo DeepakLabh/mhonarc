@@ -1,5 +1,14 @@
 2007-10-15  Olav Vitters  <olav@bkor.dhs.org>
 
+	* private-rc/author.rc: Add new style headers+footers.
+	* private-rc/date.rc:
+	* private-rc/thread.rc:
+	* public-rc/author.rc:
+	* public-rc/date.rc:
+	* public-rc/thread.rc:
+
+2007-10-15  Olav Vitters  <olav@bkor.dhs.org>
+
 	* archive.pl: Use new style for index pages.
 
 2007-10-15  Olav Vitters  <olav@bkor.dhs.org>
