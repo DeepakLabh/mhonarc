@@ -98,7 +98,7 @@ print >>INDEX, """<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN" "http://www.
             <option value="inurl:/archives/">All mailing lists</option>"""
 
 for list in mlists:
-    print >>INDEX, '<option value="inurl:/archives/%s/">%s</option>' % (list.internal_name(), list.real_name)
+    print >>INDEX, '<option value="inurl:/archives/%s/">%s</option>' % (list.internal_name(), list.internal_name())
 
 
 print >>INDEX, """
@@ -127,7 +127,7 @@ print >>INDEX, """
 """
 
 for list in mlists:
-    print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list.internal_name(), list.real_name)
+    print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list.internal_name(), list.internal_name())
 print >>INDEX, "</ul>"
 
 print >>INDEX, """

@@ -1,3 +1,10 @@
+2008-06-01  Olav Vitters  <olav@bkor.dhs.org>
+
+	* update-master: Use ínternal name'instead of real name for links.
+	They mostly don't make sense. Further, the new list command
+	capitalises the real name automatically, resulting in a weird name for
+	most.
+
 2007-10-15  Olav Vitters  <olav@bkor.dhs.org>
 
 	* private-rc/author.rc: Add new style headers+footers.
