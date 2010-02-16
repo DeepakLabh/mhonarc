@@ -93,14 +93,15 @@ sub handle_msg {
 
   my $msg = new Mail::Internet ( $msg_lines );
 
-  $received_text1 = $msg->head()->get ("Received", 0);
-  $received_text2 = $msg->head()->get ("Received", 1);
-  $received_text3 = $msg->head()->get ("Received", 2);
+  my $received_count = $msg->head()->count ("Received");
+  $received_text1 = $received_count >= 1 ? $msg->head()->get ("Received", 0) : undef;
+  $received_text2 = $received_count >= 2 ? $msg->head()->get ("Received", 1) : undef;
+  $received_text3 = $received_count >= 3 ? $msg->head()->get ("Received", 2) : undef;
 
   my $time;
 
   if (defined $received_text1) {
-    $received = new Mail::Field ('received', $received_text1);
+    $received = Mail::Field->new('Received', $received_text1);
     if ($received->parsed_ok ()) {
       my $parse_tree = $received->parse_tree();
       $time = str2time ($parse_tree->{date_time}->{whole});
@@ -110,7 +111,7 @@ sub handle_msg {
       }
     }
     elsif (defined($received_text2)) {
-      $received = new Mail::Field ('received', $received_text2);
+      $received = Mail::Field->new('Received', $received_text2);
       if ($received->parsed_ok ()) {
         my $parse_tree = $received->parse_tree();
         $time = str2time ($parse_tree->{date_time}->{whole});
@@ -120,7 +121,7 @@ sub handle_msg {
         }
       }
       elsif (defined($received_text3)) {
-        $received = new Mail::Field ('received', $received_text3);
+        $received = Mail::Field->new('Received', $received_text3);
         if ($received->parsed_ok ()) {
           my $parse_tree = $received->parse_tree();
           $time = str2time ($parse_tree->{date_time}->{whole});
@@ -137,7 +138,6 @@ sub handle_msg {
       }
     }
   }
-
   if(defined($time)) {
     if(defined($self->{start_time})) {
       return if($self->{start_time} > 0 && $time < $self->{start_time});
