@@ -19,6 +19,8 @@ from Mailman import MailList
 from Mailman import Utils
 from Mailman import Errors
 from Mailman.i18n import _
+import glob
+import os.path
 
 
 dirname = "/var/lib/mailman/archives/public"
@@ -30,8 +32,10 @@ names.sort()
 vhost='gnome.org'
 
 mlists = []
+all_mlists = set()
 for n in names:
     mlist = MailList.MailList(n, lock=0)
+    all_mlists.add(mlist.internal_name())
     if not mlist.advertised:
         continue
 
@@ -44,7 +48,8 @@ for n in names:
         continue
     mlists.append(mlist)
 
-
+archived_lists = set([os.path.basename(path) for path in glob.glob(os.path.join(dirname, '*')) if os.path.islink(path)])
+obsolete_mlists = archived_lists - all_mlists
 
 
 INDEX=open("%s/index.html" % dirname, "w")
@@ -129,6 +134,15 @@ print >>INDEX, """
 for list in mlists:
     print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list.internal_name(), list.internal_name())
 print >>INDEX, "</ul>"
+
+if len(obsolete_mlists):
+    print >>INDEX, """Obsolete mailing lists:
+    <ul style="-moz-column-width: 30ex; -webkit-column-width: 30ex; column-width: 30ex">"""
+
+    for list in sorted(obsolete_mlists):
+        print >>INDEX, '<li><a href="%s/">%s</a></li>' % (list, list)
+    
+    print >>INDEX, "</ul>"
 
 print >>INDEX, """
 
